@@ -3,7 +3,6 @@
 
 import turtle
 import os
-from playsound import playsound
 
 # Doing some initialisation
 wn = turtle.Screen()
