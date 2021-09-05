@@ -13,7 +13,7 @@ wn.bgcolor("black")
 wn.setup(width=800, height=600, startx=100, starty=100)
 wn.tracer(0)
 
-# Scoring
+# Scoring - Sets initial scores to 0
 score_a = 0
 score_b = 0
 
@@ -22,8 +22,10 @@ paddle_a = turtle.Turtle()  # Creates a new turtle for the paddle
 paddle_a.speed(0)  # Sets animation speed (0=fastest)
 paddle_a.shape("square")  # Defines the general shape
 paddle_a.color("white")  # Sets the color
+
 # Sets the size (5 units tall and 1 across)
 paddle_a.shapesize(stretch_wid=5, stretch_len=1)
+
 paddle_a.penup()  # Raises the "pen" so the turtle doesn't draw on the screen
 paddle_a.goto(-350, 0)  # Sets the paddle in the right location
 
@@ -43,8 +45,9 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = .05  # Defines at what speed the ball moves across the screen.
-# This value will probably have to be adjusted depending on the speed of your computer.
+
+# Defines at what speed the ball moves across the screen. This value might have to adjust for your computer
+ball.dx = .05
 ball.dy = .05
 
 # Placing the score table
@@ -60,13 +63,14 @@ pen.write("Player A: 0  Player B: 0", align="center",
 # Functions
 
 
-def paddle_a_up():  # Moves paddle A up
+# Moves paddle A up
+def paddle_a_up():
     y = paddle_a.ycor()  # Finds the current Y position
     y += 20  # Adds 20 to the current position, i.e. moves the paddle by 20 pixels
     paddle_a.sety(y)  # Reposition the paddle to the new position
 
-    if paddle_a.ycor() > 250:  # Checks to see if paddle is moved off screen
-        # If so, put it back. Works the same way on the functions below
+    # Checks if your paddle is off screen. If so, put it back where it belongs
+    if paddle_a.ycor() > 250:
         paddle_a.sety(250)
 
 
@@ -96,7 +100,8 @@ def paddle_b_down():  # Moves paddle B down
 
 
 # Keyboard Binding
-wn.listen()  # Tells the window to listen for keyboard inputs
+# Tells the window to listen for keyboard inputs
+wn.listen()
 # Tells the window what keys to look for, and calls the appropriate function
 wn.onkeypress(paddle_a_up, "w")
 wn.onkeypress(paddle_a_down, "s")
@@ -109,9 +114,9 @@ while True:
 
     # Moving the ball
 
-    # Moves the ball in the X and Y coorinate plane, according to
+    # Moves the ball in the X and Y coorinate plane, according to values defined earlier
     ball.setx(ball.xcor()+ball.dx)
-    ball.sety(ball.ycor()+ball.dy)  # values defined earlier
+    ball.sety(ball.ycor()+ball.dy)
 
     # Border checking
 
