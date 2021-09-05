@@ -3,6 +3,10 @@
 
 import turtle
 import os
+import sys
+if (sys.platform == "win32"):
+    import winsound
+
 
 # Doing some initialisation
 wn = turtle.Screen()
@@ -62,8 +66,9 @@ pen.write("Player A: 0  Player B: 0", align="center",
 
 # Functions
 
-
 # Moves paddle A up
+
+
 def paddle_a_up():
     y = paddle_a.ycor()  # Finds the current Y position
     y += 20  # Adds 20 to the current position, i.e. moves the paddle by 20 pixels
@@ -99,6 +104,15 @@ def paddle_b_down():  # Moves paddle B down
         paddle_b.sety(-250)
 
 
+def playSound():
+    if (sys.platform == "linux"):
+        os.system("aplay pong.wav&")
+    elif (sys.platform == "win32"):
+        winsound.PlaySound("pong.wav", winsound.SND_ASYNC)
+    elif (sys.platform == "darwin"):
+        os.system("afplay pong.wav&")
+
+
 # Keyboard Binding
 # Tells the window to listen for keyboard inputs
 wn.listen()
@@ -124,13 +138,13 @@ while True:
         ball.sety(290)
         ball.dy *= -1
         # Should play a sound and kind of does, but not quite. I don't know....
-        os.system("aplay pong.wav&")
+        playSound()
 
     if ball.ycor() < -280:  # If the ball hits the bottom edge, reverse Y direction of movement
         ball.sety(-280)
         ball.dy *= -1
 
-        os.system("aplay pong.wav&")
+        playSound()
 
     # Checks to see if the ball exits the screen. If so, add point and reset.
     if ball.xcor() > 390:
@@ -153,7 +167,9 @@ while True:
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor()+50 and ball.ycor() > paddle_b.ycor()-50):
         ball.setx(340)  # Checks to see if the ball hits the paddle
         ball.dx *= -1  # If so, reverse x direction.
+        playSound()
 
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor()+50 and ball.ycor() > paddle_a.ycor()-50):
         ball.setx(-340)  # See comments above...
         ball.dx *= -1
+        playSound()
