@@ -9,7 +9,7 @@ if (sys.platform == "linux"):
 def playSFX():
     if (sys.platform == "linux"):
         #os.system("aplay pong.wav&")
-        playsound("/home/trond/Documents/repos/PyGames/pong.wav")        
+        playsound("/home/trond/Documents/repos/PyGames/pong.wav")
     elif (sys.platform == "win32"):
         winsound.PlaySound("pong.wav", winsound.SND_ASYNC)
     elif (sys.platform == "darwin"):

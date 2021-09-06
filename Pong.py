@@ -50,8 +50,8 @@ ball.penup()
 ball.goto(0, 0)
 
 # Defines at what speed the ball moves across the screen. This value might have to adjust for your computer
-ball.dx = .05
-ball.dy = .05
+ball.dx = .1
+ball.dy = .1
 
 # Placing the score table
 pen = turtle.Turtle()
